@@ -52,7 +52,7 @@
 
 ---
 
-## 🛠️ El prototipo
+## 🔧 El prototipo
 
 ```mermaid
 flowchart LR
