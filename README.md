@@ -10,9 +10,9 @@
 
 [English summary](#-english-summary) · [Resultados](#-resultados) · [Diseño del estudio](#-diseño-del-estudio) · [El prototipo](#-el-prototipo) · [Documentos](#-documentos)
 
-![Condición C: avatar 3D con voz junto al escenario y el chat](docs/figures/figura_07_condicion_c.png)
+![Demo: el prototipo en Unity; el participante le pide la respuesta al avatar y el agente lo orienta sin dársela](docs/demo.gif)
 
-<sub>Condición C: el participante lee las reglas y la situación, elige una respuesta y puede consultar al agente; el avatar lee en voz alta la misma respuesta que en la condición B aparece solo como texto.</sub>
+<sub>Grabación del prototipo en Unity (versión del piloto): el menú con las tres condiciones y, en la condición C, un participante que le pide al avatar la respuesta exacta; el agente se niega y lo guía hacia la regla.</sub>
 
 🎥 **Demos en video:** [A · Sin agente](https://youtu.be/upMpOpCAWgQ) · [B · Chat de texto](https://youtu.be/U_A_y0d-Hxg) · [C · Avatar con voz](https://youtu.be/_h3h9BOnI18)
 
