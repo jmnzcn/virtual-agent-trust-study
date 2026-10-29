@@ -31,3 +31,7 @@ Logs/*.csv
 .env
 **/Settings/*Secret*
 **/Settings/*Local*
+
+# Unity Asset Store packages: licensed for use in builds, not for redistribution
+/Assets/1toonteen/
+/Assets/1toonteen.meta

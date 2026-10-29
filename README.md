@@ -73,6 +73,8 @@ flowchart LR
 
 Cómo abrirlo, compilarlo, configurar las API keys, el esquema del CSV y la referencia de cada script: [**`docs/REFERENCIA_TECNICA.md`**](docs/REFERENCIA_TECNICA.md). Guía para participantes: [`GUIA_PARTICIPANTE.md`](GUIA_PARTICIPANTE.md).
 
+**Modelo del avatar:** el personaje 3D viene del paquete **1toonteen** del Unity Asset Store y no está en este repositorio, porque su licencia no permite redistribuir los archivos originales. Para abrir el proyecto completo, impórtalo desde el Asset Store (Window › Package Manager › My Assets) en `Assets/1toonteen/`; las escenas lo vuelven a encontrar por su GUID. Los videos y la demo muestran el resultado compilado.
+
 ---
 
 ## 📄 Documentos
@@ -98,6 +100,8 @@ Los datos de los participantes no se publican en este repositorio.
 - **People liked it anyway** (avatar aesthetics 5.6 / 7; workload unchanged).
 
 Takeaway: for tasks with explicit rules, embodiment can cost accuracy and time without adding trust. Built with Unity 6 (C#), Gemini, Azure Speech, CSV logging and standard UX instruments (RAW-TLX, meCUE 2.0).
+
+The avatar's 3D model (the **1toonteen** Unity Asset Store package) is not in this repository, since its license does not allow redistributing the source files: import it from the Asset Store into `Assets/1toonteen/` to open the full project.
 
 ---
 
