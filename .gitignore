@@ -29,6 +29,7 @@ Logs/*.csv
 
 # Secrets (when API keys are externalized)
 .env
+/_config/LocalSecrets.json
 **/Settings/*Secret*
 **/Settings/*Local*
 
