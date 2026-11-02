@@ -1,114 +1,126 @@
-# 🤖 ¿Ayuda más un agente virtual con cara y voz?
-
-**Un estudio con usuarios reales sobre cómo cambia el desempeño y la confianza según la forma en que se presenta un asistente de IA: sin agente, como chat de texto, o como avatar 3D que habla. El LLM y el prompt fueron los mismos en las dos versiones con agente.**
+# Does a virtual agent with a face and a voice help?
 
 ![Unity](https://img.shields.io/badge/Unity-6000.3-000000?logo=unity&logoColor=white)
-![C#](https://img.shields.io/badge/C%23-.NET-512BD4?logo=dotnet&logoColor=white)
-![Gemini](https://img.shields.io/badge/LLM-Gemini_2.5_Flash-4285F4?logo=googlegemini&logoColor=white)
-![Azure](https://img.shields.io/badge/Voz-Azure_Speech_%2B_lip--sync-0078D4)
-![N](https://img.shields.io/badge/participantes-15-2EA44F)
+![Participants](https://img.shields.io/badge/participants-15-2EA44F)
+![License](https://img.shields.io/badge/license-PolyForm%20Noncommercial-orange)
 
-[English summary](#-english-summary) · [Resultados](#-resultados) · [Diseño del estudio](#-diseño-del-estudio) · [El prototipo](#-el-prototipo) · [Documentos](#-documentos)
+A user study on how people's accuracy and trust change depending on how an AI assistant is
+presented: no assistant, a text chat, or a 3D avatar that speaks. Both assistant versions used the
+same language model and the same prompt; only the presentation changed.
 
-![Demo: el prototipo en Unity; el participante le pide la respuesta al avatar y el agente lo orienta sin dársela](docs/demo.gif)
+![Demo: the Unity prototype; a participant asks the avatar for the answer and the agent guides them without giving it](docs/demo.gif)
 
-<sub>Grabación del prototipo en Unity (versión del piloto): el menú con las tres condiciones y, en la condición C, un participante que le pide al avatar la respuesta exacta; el agente se niega y lo guía hacia la regla.</sub>
+<sub>The Unity prototype (pilot version): the menu with the three conditions and, in condition C, a participant asking the avatar for the exact answer. The agent refuses and points them to the rule.</sub>
 
-🎥 **Demos en video:** [A · Sin agente](https://youtu.be/upMpOpCAWgQ) · [B · Chat de texto](https://youtu.be/U_A_y0d-Hxg) · [C · Avatar con voz](https://youtu.be/_h3h9BOnI18)
+Videos of each condition: [A, no agent](https://youtu.be/upMpOpCAWgQ) ·
+[B, text chat](https://youtu.be/U_A_y0d-Hxg) · [C, avatar with voice](https://youtu.be/_h3h9BOnI18).
+The results are written up as a short paper:
+[article (PDF, Spanish)](docs/Entrega%203%20Articulo%20PF3311%20NeyFredJimenez%20B03230.pdf).
 
----
+## Results
 
-## 📊 Resultados
+![Accuracy, confidence and calibration by condition](docs/figures/resultados_principales.png)
 
-![Precisión, confianza y calibración por condición](docs/figures/resultados_principales.png)
+1. The text chat was more accurate: 81.1 % correct answers against 55.6 % with the avatar, with the
+   same model and prompt (Wilcoxon p = 0.022; 95 % CI of the difference, 13 to 39 points). 11 of
+   the 15 participants did better with text than with the avatar.
+2. The avatar did not increase trust. Confidence was high in all three conditions (6.2 to 6.5 out
+   of 7), and slightly lower with the avatar, not higher.
+3. With the avatar, confidence matched accuracy less well: a calibration gap of 0.31 against 0.11
+   with text. This difference is descriptive only (Friedman p = 0.21); several people reported high
+   confidence and still got the answer wrong.
+4. The avatar slowed everything down: about 177 s per question against about 114 s with no agent
+   (56 % more), and more chat turns (4.4 against 3.6), without better answers.
+5. People liked it anyway. The avatar's aesthetics scored 5.6 out of 7 (meCUE 2.0) and perceived
+   workload didn't change (RAW-TLX about 4.3 in all three). A pleasant experience did not lead to
+   better performance.
+6. The agent never gave away an answer: zero cases in the logs, although at least one participant
+   tried to get it to.
 
-**Lo que encontré:**
+What this means for anyone designing AI assistants: when the answer is in a written rule, giving
+the assistant a face and a voice can cost accuracy and time without adding trust. If the avatar
+stays, the voice and waiting times should be lighter, or users should be able to switch to text.
 
-1. **El chat de texto ganó en precisión:** 81,1 % de aciertos, contra 55,6 % con el avatar, **con el mismo LLM y el mismo prompt** (Wilcoxon p = 0,022; IC 95 % de la diferencia: 13 a 39 puntos). 11 de las 15 personas acertaron más con el texto que con el avatar.
-2. **El avatar no aumentó la confianza.** Se mantuvo alta en las tres condiciones (6,2 a 6,5 de 7); fue algo menor con el avatar, no mayor.
-3. **Con el avatar, la confianza se desalineó más de los aciertos:** brecha de 0,31 contra 0,11 en texto. La diferencia es descriptiva (Friedman p = 0,21): varias personas marcaron confianza alta y fallaron.
-4. **El avatar hizo todo más lento:** ~177 s por pregunta contra ~114 s sin agente (~56 % más), y hubo más turnos de chat (4,4 contra 3,6) sin que eso mejorara los aciertos.
-5. **Gustó, aunque rindió peor.** La estética del avatar obtuvo 5,6 de 7 (meCUE II) y la carga de trabajo percibida no cambió (RAW-TLX ≈ 4,3 en las tres). Es un caso claro de experiencia agradable que no se traduce en mejor desempeño.
-6. **El agente no filtró respuestas:** 0 casos en los registros, aunque al menos un participante intentó que le diera la letra.
+## Study design
 
-**¿Qué significa para quien diseña asistentes con IA?** En tareas donde la respuesta está en una regla escrita, ponerle cara y voz al asistente puede **costar precisión y tiempo** sin mejorar la confianza. Si se quiere conservar el avatar, conviene aligerar la voz y las esperas, o dejar que el usuario elija el modo texto.
+The question was whether accuracy, confidence and the match between them change with how the agent
+is presented. 15 adults took part, recruited openly, most of them 25 to 34 with university or
+technical studies. Each person went through all three conditions in counterbalanced order, answering
+6 multiple-choice questions per condition about fictional rules, 18 in total:
 
----
+- A: no agent.
+- B: a chat with Gemini 2.5 Flash.
+- C: the same chat, read aloud by a 3D avatar with Azure Speech and lip-sync.
 
-## 🔬 Diseño del estudio
+I recorded whether each answer was right, the confidence (1 to 7), the time per question and the
+chat log, plus RAW-TLX and meCUE 2.0 questionnaires after each block. The analysis used Friedman and
+paired Wilcoxon tests with Holm/Bonferroni correction (α = 0.05). That gave 270 answers and no
+invalid rows.
 
-| | |
-|---|---|
-| **Pregunta** | ¿Cambian la precisión (RQ1), la confianza (RQ2) y la calibración entre ambas (RQ3) según cómo se presenta el agente? |
-| **Participantes** | 15 adultos, reclutamiento abierto; la mayoría de 25 a 34 años y con estudios universitarios o técnicos |
-| **Diseño** | *Within-subjects*: cada persona pasó por las tres condiciones, en orden contrabalanceado |
-| **Tarea** | 6 preguntas de opción múltiple por condición sobre reglas ficticias (18 en total) |
-| **Condiciones** | **A:** sin agente · **B:** chat con Gemini 2.5 Flash · **C:** el mismo chat leído por un avatar 3D con voz de Azure y sincronía labial |
-| **Medidas** | Acierto, confianza (1 a 7) y tiempo por pregunta; registro del chat; RAW-TLX y meCUE 2.0 después de cada bloque |
-| **Análisis** | Friedman y Wilcoxon pareado con corrección de Holm/Bonferroni (α = 0,05) |
-| **Datos** | 270 respuestas registradas, 0 filas inválidas |
+Limits: the sample is small (N = 15). Each block had different questions, so part of the difference
+may come from how hard the items were. And participants ran the study on their own computers, which
+affects voice latency and avatar rendering in condition C. The results guide the prototype's design;
+they need a repeat study before being generalized.
 
-**Limitaciones:** la muestra es pequeña (N = 15); cada bloque tenía preguntas distintas, así que parte de la diferencia puede venir de la dificultad de los ítems; y el estudio corrió en las computadoras de los participantes, no en un entorno uniforme, lo que afecta la latencia de la voz y el render del avatar en la condición C. Los resultados orientan el diseño del prototipo; no son generalizables sin repetir el estudio.
-
----
-
-## 🔧 El prototipo
+## The prototype
 
 ```mermaid
 flowchart LR
-    P["Participante"] --> U["App Unity<br/>(Windows, 1920×1080)"]
-    U -- "consulta (B y C)" --> G["Gemini 2.5 Flash<br/>system prompt: orientar sin dar la respuesta"]
-    G -- "respuesta en texto" --> U
-    U -- "solo C" --> AZ["Azure Speech<br/>TTS + visemas"]
-    AZ --> AV["Avatar 3D<br/>con lip-sync"]
-    U --> CSV["Registro CSV<br/>acierto, confianza, tiempo, chat"]
-    P --> F["Cuestionarios<br/>RAW-TLX y meCUE 2.0"]
+    P["Participant"] --> U["Unity app<br/>(Windows, 1920×1080)"]
+    U -- "question (B and C)" --> G["Gemini 2.5 Flash<br/>system prompt: guide without giving the answer"]
+    G -- "text answer" --> U
+    U -- "C only" --> AZ["Azure Speech<br/>TTS + visemes"]
+    AZ --> AV["3D avatar<br/>with lip-sync"]
+    U --> CSV["CSV log<br/>correct, confidence, time, chat"]
+    P --> F["Questionnaires<br/>RAW-TLX and meCUE 2.0"]
 ```
 
-- **Unity 6 (C#):** flujo del experimento (consentimiento, selección de condición, preguntas, confianza y pantalla final) y registro automático en CSV por sesión.
-- **Gemini 2.5 Flash:** tutor que orienta sin revelar la letra; el mismo prompt en B y C.
-- **Azure Speech:** síntesis de voz con visemas para la sincronía labial del avatar en C.
-- **Privacidad:** consentimiento informado, ID de sesión anónimo y opción de salir y borrar los datos en cualquier momento.
-- **Python:** scripts para generar las preguntas desde Word y las figuras de los informes ([`_tools/`](_tools/)).
+The app is built in Unity 6 with C#. It runs the whole session (consent, choosing the condition,
+the questions, confidence and the final screen) and writes a CSV per session. Gemini 2.5 Flash acts
+as a tutor that guides without revealing the answer, with the same prompt in B and C. Azure Speech
+produces the voice and the visemes for the avatar's lip-sync. Participants gave informed consent,
+got an anonymous session ID and could leave and have their data deleted at any time. A few Python
+scripts in [`_tools/`](_tools/) generate the questions from Word and the figures for the reports.
 
-Cómo abrirlo, compilarlo, configurar las API keys, el esquema del CSV y la referencia de cada script: [**`docs/REFERENCIA_TECNICA.md`**](docs/REFERENCIA_TECNICA.md). Guía para participantes: [`GUIA_PARTICIPANTE.md`](GUIA_PARTICIPANTE.md).
+How to open and build it, configure the API keys, the CSV format and each script are described in
+[`docs/REFERENCIA_TECNICA.md`](docs/REFERENCIA_TECNICA.md) (Spanish). The participant guide is
+[`GUIA_PARTICIPANTE.md`](GUIA_PARTICIPANTE.md).
 
-**Modelo del avatar:** el personaje 3D viene del paquete **1toonteen** del Unity Asset Store y no está en este repositorio, porque su licencia no permite redistribuir los archivos originales. Para abrir el proyecto completo, impórtalo desde el Asset Store (Window › Package Manager › My Assets) en `Assets/1toonteen/`; las escenas lo vuelven a encontrar por su GUID. Los videos y la demo muestran el resultado compilado.
+The avatar's 3D model comes from the 1toonteen package on the Unity Asset Store and is not in this
+repository, because its license doesn't allow redistributing the original files. To open the full
+project, import it from the Asset Store (Window › Package Manager › My Assets) into
+`Assets/1toonteen/`; the scenes find it again by its GUID. The videos and the demo show the built
+result.
 
----
+## Documents (in Spanish)
 
-## 📄 Documentos
+- [Article with the results (PDF)](docs/Entrega%203%20Articulo%20PF3311%20NeyFredJimenez%20B03230.pdf)
+- [Full results report (PDF)](docs/Entrega%203%20Informe%20Resultados%20PF3311%20NeyFredJimenez%20B03230.pdf)
+- [Presentation (PPTX)](docs/Entrega%203%20Presentacion%20PF3311%20NeyFredJimenez%20B03230.pptx)
+- [Researcher protocol (HTML)](docs/Protocolo_Investigador_PF3311_NeyFredJimenez.html)
+- [Design and proof of concept](docs/Entregable2_PF3311_NeyFredJimenez(B03230).md)
 
-- [Artículo con los resultados (PDF)](docs/Entrega%203%20Articulo%20PF3311%20NeyFredJimenez%20B03230.pdf)
-- [Informe completo de resultados (PDF)](docs/Entrega%203%20Informe%20Resultados%20PF3311%20NeyFredJimenez%20B03230.pdf)
-- [Presentación (PPTX)](docs/Entrega%203%20Presentacion%20PF3311%20NeyFredJimenez%20B03230.pptx)
-- [Protocolo del investigador (HTML)](docs/Protocolo_Investigador_PF3311_NeyFredJimenez.html)
-- [Diseño y prueba de concepto (Entregable 2)](docs/Entregable2_PF3311_NeyFredJimenez(B03230).md)
+Participant data is not published in this repository.
 
-Los datos de los participantes no se publican en este repositorio.
+## Background
 
----
+A project for PF-3311 Intelligent Virtual Agents (Dr. Alexander Barquero Elizondo), in the graduate
+program in Computer Science at the University of Costa Rica, first semester of 2026. Third-party
+models, services and assets keep their own licenses.
 
-## 🇺🇸 English summary
+## Resumen en español
 
-**Does giving an AI assistant a face and a voice help people decide better?** In a within-subjects pilot (N = 15), participants answered rule-based multiple-choice questions under three conditions: **no agent**, a **text chat** with Gemini 2.5 Flash, and the **same chat voiced by a 3D avatar** with Azure Speech and lip-sync. The LLM and prompt were identical in both agent conditions.
+¿Ayuda más un asistente de IA con cara y voz? En un estudio piloto con 15 personas, cada una
+respondió preguntas sobre reglas en tres condiciones: sin agente, con un chat de texto (Gemini 2.5
+Flash) y con el mismo chat leído por un avatar 3D con voz. Con el mismo modelo y el mismo prompt, el
+texto acertó el 81,1 % y el avatar el 55,6 % (Wilcoxon p = 0,022). El avatar no aumentó la confianza,
+hizo cada pregunta un 56 % más lenta y aun así gustó. El artículo, el informe y la presentación están
+en `docs/`.
 
-- **Text beat the avatar on accuracy:** 81.1 % vs. 55.6 % correct (Wilcoxon p = 0.022); 11 of 15 participants did better with text.
-- **The avatar did not raise trust:** confidence stayed high everywhere (6.2–6.5 / 7).
-- **Confidence drifted further from accuracy with the avatar** (calibration gap 0.31 vs. 0.11 for text; descriptive, not significant).
-- **The avatar was ~56 % slower per question** and led to more chat turns, without better answers.
-- **People liked it anyway** (avatar aesthetics 5.6 / 7; workload unchanged).
+## License
 
-Takeaway: for tasks with explicit rules, embodiment can cost accuracy and time without adding trust. Built with Unity 6 (C#), Gemini, Azure Speech, CSV logging and standard UX instruments (RAW-TLX, meCUE 2.0).
+The code is under [PolyForm Noncommercial 1.0.0](LICENSE): you can read, run and modify it for
+noncommercial purposes, including evaluating it for a job. Commercial use needs a license from me:
+[neyfred@gmail.com](mailto:neyfred@gmail.com).
 
-The avatar's 3D model (the **1toonteen** Unity Asset Store package) is not in this repository, since its license does not allow redistributing the source files: import it from the Asset Store into `Assets/1toonteen/` to open the full project.
-
----
-
-## 🎓 Contexto académico
-
-Proyecto del curso PF-3311 Agentes Virtuales Inteligentes (Dr. Alexander Barquero Elizondo), Posgrado en Computación e Informática, Universidad de Costa Rica, I ciclo 2026. Material académico; los modelos, servicios y assets de terceros conservan sus propias licencias.
-
----
-
-**Ney Fred Jiménez Campos** · [LinkedIn](https://www.linkedin.com/in/neyfred/) · [GitHub](https://github.com/jmnzcn) · neyfred@gmail.com
+Ney Fred Jiménez Campos · [LinkedIn](https://www.linkedin.com/in/neyfred/) · [GitHub](https://github.com/jmnzcn)
